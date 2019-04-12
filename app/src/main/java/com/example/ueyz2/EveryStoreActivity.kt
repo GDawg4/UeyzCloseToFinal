@@ -7,12 +7,11 @@ import android.support.v7.widget.RecyclerView
 import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_every_store.*
-import kotlinx.android.synthetic.main.content_main.*
 
 class EveryStoreActivity : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: StoreAdapter
+    private lateinit var currentAdapter: StoreAdapter
 
     private lateinit var storeList: ArrayList<StoreModel>
 
@@ -26,8 +25,10 @@ class EveryStoreActivity : AppCompatActivity() {
         recyclerView = storeRecycleView
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager= LinearLayoutManager(this)
-        adapter = StoreAdapter(this, storeList)
-        recyclerView.adapter=adapter
+        currentAdapter = StoreAdapter(this, storeList)
+        recyclerView.adapter=currentAdapter
+
+
 
         if (itemsToShow==1){
             db.collection("tiendas")
@@ -44,7 +45,7 @@ class EveryStoreActivity : AppCompatActivity() {
                             R.drawable.tienda
                         )
                         storeList.add(store)
-                        adapter.notifyDataSetChanged()
+                        currentAdapter.notifyDataSetChanged()
                     }
                 }
                 .addOnFailureListener { exception ->
@@ -67,7 +68,7 @@ class EveryStoreActivity : AppCompatActivity() {
                             R.drawable.food
                         )
                         storeList.add(store)
-                        adapter.notifyDataSetChanged()
+                        currentAdapter.notifyDataSetChanged()
                     }
                 }
                 .addOnFailureListener { exception ->
@@ -90,7 +91,7 @@ class EveryStoreActivity : AppCompatActivity() {
                             R.drawable.other
                         )
                         storeList.add(store)
-                        adapter.notifyDataSetChanged()
+                        currentAdapter.notifyDataSetChanged()
                     }
                 }
                 .addOnFailureListener { exception ->

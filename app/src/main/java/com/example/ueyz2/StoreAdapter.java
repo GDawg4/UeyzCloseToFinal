@@ -15,7 +15,7 @@ import java.util.List;
 
 public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.StoreViewHolder> {
 
-    private Context mCtx;
+    public Context mCtx;
     private List<StoreModel> storeModelList;
 
     public StoreAdapter(Context mCtx, List<StoreModel> storeModelList) {
@@ -33,7 +33,6 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.StoreViewHol
 
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull StoreViewHolder storeViewHolder, int i){
         StoreModel store = storeModelList.get(i);
@@ -50,15 +49,27 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.StoreViewHol
         return storeModelList.size();
     }
 
-    static class StoreViewHolder extends RecyclerView.ViewHolder {
+    static class StoreViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imageView;
         TextView StoreTitle, Direction, textViewDescription, textViewType;
-        public StoreViewHolder(@NonNull View itemView) {
+        public StoreViewHolder(@NonNull final View itemView) {
             super(itemView);
             imageView= itemView.findViewById(R.id.imageView);
             StoreTitle= itemView.findViewById(R.id.StoreTitle);
             textViewDescription = itemView.findViewById(R.id.textViewDescription);
             textViewType = itemView.findViewById(R.id.textViewType);
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+        }
+
+        @Override
+        public void onClick(View v) {
+            Log.d("YAY", "You clicked here boy?");
+
         }
     }
 }
