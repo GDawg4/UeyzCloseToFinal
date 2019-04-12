@@ -3,11 +3,13 @@ package com.example.ueyz2;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -15,7 +17,6 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.StoreViewHol
 
     private Context mCtx;
     private List<StoreModel> storeModelList;
-
 
     public StoreAdapter(Context mCtx, List<StoreModel> storeModelList) {
         this.mCtx = mCtx;
@@ -29,7 +30,9 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.StoreViewHol
         View view = inflater.inflate(R.layout.store_layout,null);
         StoreViewHolder holder = new StoreViewHolder(view);
         return holder;
+
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull StoreViewHolder storeViewHolder, int i){
@@ -39,6 +42,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.StoreViewHol
         storeViewHolder.textViewDescription.setText(store.description);
         storeViewHolder.textViewType.setText(store.name);
         storeViewHolder.imageView.setImageDrawable(mCtx.getResources().getDrawable(store.imageId));
+
     }
 
     @Override
@@ -46,7 +50,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.StoreViewHol
         return storeModelList.size();
     }
 
-    class StoreViewHolder extends RecyclerView.ViewHolder {
+    static class StoreViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView StoreTitle, Direction, textViewDescription, textViewType;
         public StoreViewHolder(@NonNull View itemView) {

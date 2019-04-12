@@ -28,6 +28,7 @@ class EveryStoreActivity : AppCompatActivity() {
         recyclerView.layoutManager= LinearLayoutManager(this)
         adapter = StoreAdapter(this, storeList)
         recyclerView.adapter=adapter
+
         if (itemsToShow==1){
             db.collection("tiendas")
                 .whereEqualTo("type", "Abarrotería")

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.provider.ContactsContract
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
+import android.support.v4.app.FragmentActivity
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
         db=FirebaseFirestore.getInstance()
         val userId = intent.getStringExtra("userId")
         val userRef=db.collection("usuarios").document(userId)
@@ -105,13 +107,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_map -> {
-                // Handle the camera action
+                val mapStart = Intent(this, MapsActivity::class.java)
+                startActivity(mapStart)
             }
             R.id.nav_place -> {
-
+                val newStoreStart = Intent(this, NewStoreActivity::class.java)
+                startActivity(newStoreStart)
             }
             R.id.nav_profile -> {
-
+                val oneUserStart = Intent(this, OneUserActivity::class.java)
+                oneUserStart.putExtra("userId",intent.getStringExtra("userId"))
+                startActivity(oneUserStart)
             }
 
             R.id.nav_share -> {

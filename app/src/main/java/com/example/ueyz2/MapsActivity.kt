@@ -48,6 +48,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      */
 
     override fun onMapReady(googleMap: GoogleMap) {
+        Toast.makeText(this, "Mapa listo", Toast.LENGTH_LONG).show()
         mMap = googleMap
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
